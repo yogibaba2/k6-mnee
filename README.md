@@ -1,24 +1,51 @@
 # K6 Load Testing Project
 
-This project is designed to perform load testing using K6. It includes a sample load testing script that simulates user behavior on a website.
+This project performs load testing for BSV blockchain transactions using K6. It includes scripts for testing both V1 and V2 APIs of the MNEE treasury and cosigner services.
 
 ## Project Structure
 
 ```
 k6-load-test-project
-├── src
-│   └── sample-test.js
+├── src/
+│   ├── controllers/
+│   │   ├── cosignerController.js
+│   │   ├── treasuryController.js
+│   │   └── wocController.js
+│   ├── utils/
+│   │   ├── base64Utils.js
+│   │   └── fileWriter.js
+│   ├── sample-test-v1.js
+│   └── sample-test-v2.js
+├── config/
+│   └── config.js
+├── data/
+│   ├── transaction_data.json
+│   ├── transaction_data.txt
+│   └── wallets.json
+├── environment/
+│   └── qa.json
+├── reports/
+├── confirmationMonitor.js
+├── transactionMonitor.js
 ├── package.json
 └── README.md
 ```
 
-## Getting Started
+## Features
 
-To get started with this project, follow the steps below:
+- Load testing of BSV blockchain transactions
+- Support for both V1 and V2 API endpoints
+- Transaction monitoring and confirmation tracking
+- Mempool monitoring
+- Performance metrics collection
+- JSON and text-based transaction data storage
+
+## Getting Started
 
 ### Prerequisites
 
-Make sure you have [Node.js](https://nodejs.org/) installed on your machine. You will also need to install K6. You can find installation instructions on the [K6 website](https://k6.io/docs/getting-started/installation).
+- [Node.js](https://nodejs.org/)
+- [K6](https://k6.io/docs/getting-started/installation)
 
 ### Installation
 
@@ -28,27 +55,61 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine. You
    cd k6-load-test-project
    ```
 
-2. Install the necessary dependencies:
+2. Install dependencies:
    ```
    npm install
    ```
 
-### Running the Load Tests
+### Configuration
 
-To run the K6 load tests, use the following command:
+Update the environment configuration in `environment/qa.json` with your API credentials and endpoints.
 
-```
-k6 run src/sample-test.js
-```
+### Running Tests
 
-### Sample Test Script
+1. Run V2 API tests:
+   ```
+   npm run test
+   ```
 
-The sample test script located in `src/sample-test.js` simulates a user visiting a website and includes metrics for performance testing. You can modify this script to suit your testing needs.
+2. Run cloud-based tests:
+   ```
+   npm run cloud-test
+   ```
+
+3. Run local execution with cloud reporting:
+   ```
+   npm run cloud-local-test
+   ```
+
+4. Run with Prometheus metrics:
+   ```
+   npm run test-prometheus
+   ```
+
+### Monitoring
+
+1. Start the transaction monitor:
+   ```
+   node transactionMonitor.js
+   ```
+
+2. Start the confirmation monitor:
+   ```
+   node confirmationMonitor.js
+   ```
+
+## Metrics
+
+The tests collect the following metrics:
+- Time to broadcast
+- Mempool duration
+- First confirmation time
+- Sixth confirmation time
 
 ## Contributing
 
-If you would like to contribute to this project, please fork the repository and submit a pull request.
+Please follow the existing code style and add unit tests for any new features.
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License.
