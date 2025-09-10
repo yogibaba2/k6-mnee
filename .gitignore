@@ -1,0 +1,6 @@
+# node package files
+node_modules
+
+# report and logs
+reports
+html-report.html
