@@ -60,6 +60,6 @@ export function waitForTransactionHash(host, ticketID, txSubmissionTime, timeToB
             timeToBroadcast.add(Date.now() - txSubmissionTime, trendTags);
             return txHash;
         }
-        sleep(0.1)
+        sleep(0.5)
     }
 }

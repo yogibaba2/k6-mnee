@@ -19,6 +19,10 @@ export function checkMempool(host, txHash, startTime, mempoolDuration) {
 
     while(!inmempool) {
         const mempoolResponse = http.get(`${host}/mempool/raw`, defaultOptions);
+        if (!mempoolResponse || mempoolResponse.status !== 200) {
+            console.error(`Failed to fetch mempool data from ${host}`);
+            return false;
+        }
         const mempoolData = JSON.parse(mempoolResponse.body);
         if (mempoolData && mempoolData.length > 0) {
             const foundTx = mempoolData.find(tx =>tx == txHash);
