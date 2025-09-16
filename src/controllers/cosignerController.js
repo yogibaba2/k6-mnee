@@ -2,6 +2,7 @@ import http from 'k6/http';
 // import crypto from 'k6/crypto';
 // import { base64ToHex } from '../utils/base64Utils.js';
 import encoding from 'k6/encoding';
+import { sleep } from 'k6';
 // import atob from 'atob';
 
 const defaultOptions = {
@@ -59,5 +60,6 @@ export function waitForTransactionHash(host, ticketID, txSubmissionTime, timeToB
             timeToBroadcast.add(Date.now() - txSubmissionTime, trendTags);
             return txHash;
         }
+        sleep(0.1)
     }
 }
