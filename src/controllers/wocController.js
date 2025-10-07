@@ -22,7 +22,10 @@ export function checkMempool(host, txHash, startTime, mempoolDuration) {
         const mempoolResponse = http.get(`${host}/mempool/raw`, defaultOptions);
         if (!mempoolResponse || mempoolResponse.status !== 200) {
             console.error(`Failed to fetch mempool data from ${host}`);
-            return false;
+            if(mempoolResponse.status !== 429) {
+                return false;
+            }
+            
         }
         const mempoolData = JSON.parse(mempoolResponse.body);
         if (mempoolData && mempoolData.length > 0) {
@@ -71,8 +74,19 @@ export function checkConfirmations(host, txHash, startTime, firstConfirmationTim
 }
 
 export function decodedTransaction(host, hex){
+    let txid = null;
     const payload = JSON.stringify({ "txhex": hex });
-    const respose = http.post(`${host}/tx/decode`, payload, defaultOptions);
-    const txid = JSON.parse(respose.body)["txid"];
+    while(txid == null) {
+        const response = http.post(`${host}/tx/decode`, payload, defaultOptions);
+        if (!response || response.status !== 200) {
+            console.error(`Failed to fetch decoded transaction from ${host}`);
+            if(response.status !== 429) {
+                return null;
+            }
+        } else {
+            txid = JSON.parse(response.body)["txid"];
+        }
+        sleep(0.25)
+    }
     return txid;
 }
