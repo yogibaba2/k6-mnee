@@ -26,20 +26,22 @@ export function checkMempool(host, txHash, startTime, mempoolDuration) {
                 return false;
             }
             
-        }
-        const mempoolData = JSON.parse(mempoolResponse.body);
-        if (mempoolData && mempoolData.length > 0) {
-            const foundTx = mempoolData.find(tx =>tx == txHash);
-            if (foundTx) {
-                mempoolTime = Date.now() - startTime;
-                mempoolDuration.add(mempoolTime, trendTags);
-                console.log(`Transaction ${txHash} found in mempool. Time: ${mempoolTime} ms`);
-                return mempoolTime;
+        }else{
+            const mempoolData = JSON.parse(mempoolResponse.body);
+            if (mempoolData && mempoolData.length > 0) {
+                const foundTx = mempoolData.find(tx =>tx == txHash);
+                if (foundTx) {
+                    mempoolTime = Date.now() - startTime;
+                    mempoolDuration.add(mempoolTime, trendTags);
+                    console.log(`Transaction ${txHash} found in mempool. Time: ${mempoolTime} ms`);
+                    return mempoolTime;
+                }
+            }
+            else {
+            return false;
             }
         }
-        else {
-        return false;
-        }
+        
         sleep(0.25)
     }
     return false;
