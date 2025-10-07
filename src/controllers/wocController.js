@@ -37,7 +37,7 @@ export function checkMempool(host, txHash, startTime, mempoolDuration) {
         else {
         return false;
         }
-        sleep(0.5)
+        sleep(0.25)
     }
     return false;
 }

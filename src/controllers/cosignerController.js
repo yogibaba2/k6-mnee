@@ -54,12 +54,12 @@ export function waitForTransactionHash(host, ticketID, txSubmissionTime, timeToB
 
     }
     while (!txHash) {
+        sleep(0.25)
         txHash = getTransactionHashByTicketID(host, ticketID);
         if (txHash) {
             console.log(`Transaction Hash: ${txHash}`);
             timeToBroadcast.add(Date.now() - txSubmissionTime, trendTags);
             return txHash;
-        }
-        sleep(0.5)
+        }   
     }
 }
