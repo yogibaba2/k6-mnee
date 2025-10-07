@@ -109,7 +109,7 @@ async function processTransactions() {
             {
                 console.log(`Checking confirmations for batch of: ${batchTxIds.length}`);
                 confirmations = await checkTransactionConfirmations(batchTxIds);
-                confirmations = confirmations.filter(conf => conf && conf.confirmations);
+                confirmations = confirmations ? confirmations.filter(conf => conf && conf.confirmations) : null;
                 if (!confirmations || confirmations.length == 0) {
                     console.log('No confirmations found in batch');
                 } else {
