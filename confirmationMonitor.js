@@ -9,7 +9,7 @@ const __dirname = dirname(__filename);
 
 // Configuration
 const JSON_FILE_PATH = path.join(__dirname, './data/transaction_data.json');
-const BATCH_SIZE = 10;
+const BATCH_SIZE = 20;
 const CHECK_INTERVAL = 10000; // Check every 30 seconds
 const WOC_API_BASE = 'https://api.whatsonchain.com/v1/bsv/main';
 
