@@ -11,7 +11,7 @@ export default {
     },
     "stg": {
       "treasury": {
-        "HOST": "https://stg-api-treasury.mnee.net/api/1.0.0",
+        "HOST": "http://[::1]:80",
         "API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJibG9ja3NhdG9zaGkiLCJpYXQiOjE3NTgwNDQxNTN9.N07NEo9pZd2FVCOWibtpkOL2bxtiUz5KTycLzCJY4rU"
       },
       "consigner": {

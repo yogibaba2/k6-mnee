@@ -14,6 +14,10 @@ const defaultOptions = {
 export function signTransaction_v2(host, rawtx) {
     const payload = JSON.stringify({ rawtx, callback_url: "http://10.40.173.198:80/v1/webhook" });
     const response = http.post(`${host}/v2/transfer`, payload, defaultOptions);
+    if(response.status !== 200){
+        console.error(`Cosigner v2 signTransaction failed. Status: ${response}`);
+        return null;
+    }
     return response.body;
 }
 

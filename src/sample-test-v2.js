@@ -1,6 +1,6 @@
 import { sleep } from 'k6';
 import { Trend } from 'k6/metrics';
-import { transferTokens } from './controllers/treasuryController.js';
+import { transferTokens, transferTokensBinary } from './controllers/treasuryController.js';
 import { signTransaction_v2, waitForTransactionHash } from './controllers/cosignerController.js';
 import { checkMempool } from './controllers/wocController.js';
 import { SharedArray } from 'k6/data';
@@ -58,14 +58,19 @@ export default function () {
     const conCurrentWallet = wallets[__VU - 1];
 
     // Step 1: Create and transfer tokens using Treasury API
+    // const transferPayload = {
+    //     "walletId": conCurrentWallet.walletId,
+    //     "address": "1KYgN9EGzynBNWt5mYpFsssnctnE8D2YR9",
+    //     "amount": 1,
+    //     "broadcast":false
+    // };
     const transferPayload = {
-        "walletId": conCurrentWallet.walletId,
-        "address": "1KYgN9EGzynBNWt5mYpFsssnctnE8D2YR9",
-        "amount": 1,
-        "broadcast":false
-    };
+      "address": conCurrentWallet.address,
+      "to": "1KYgN9EGzynBNWt5mYpFsssnctnE8D2YR9",
+    }
+
     
-    const rawtx = transferTokens(mneeHost, mneeApiKey, transferPayload);
+    const rawtx = transferTokensBinary(mneeHost, transferPayload);
     if (!rawtx) return;
 
     // Step 2: Sign the transaction using Cosigner API
