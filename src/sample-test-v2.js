@@ -77,6 +77,7 @@ export default function () {
     const txSubmissionTime = Date.now();
     const ticketID = signTransaction_v2(consignerHost, rawtx);
     if (!ticketID) return;
+    console.log(`User ${__VU} -- TicketID: ${ticketID}`);
 
     // Step 3: Get transaction hash
     const txHash = waitForTransactionHash(consignerHost, ticketID, txSubmissionTime, timeToBroadcast);

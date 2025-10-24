@@ -16,7 +16,7 @@ export function transferTokens(host, apiKey, payload) {
     }
 
     const { rawtx } = JSON.parse(response.body);
-    console.log(`Raw Transaction: ${rawtx}`);
+    console.log(`User ${__VU} -- Raw Transaction: ${rawtx}`);
     return rawtx;
 }
 
@@ -35,6 +35,6 @@ export function transferTokensBinary(host, payload) {
     }
 
     const { rawtx } = JSON.parse(response.body);
-    console.log(`Raw Transaction: ${rawtx}`);
+    console.log(`User ${__VU} -- Raw Transaction: ${rawtx}`);
     return rawtx;
 }
