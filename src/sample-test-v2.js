@@ -9,6 +9,7 @@ import file from 'k6/x/file';
 
 
 const filePath = './data/transaction_data.txt';
+const ticketIDsFilePath = 'logs.txt';
 
 const wallets = new SharedArray('wallets', function () {
   const f =  JSON.parse(open(`../data/wallets/wallets_${__ENV.ENV}.json`));
@@ -80,7 +81,7 @@ export default function () {
     console.log(`User ${__VU} -- TicketID: ${ticketID}`);
 
     // Step 3: Get transaction hash
-    const txHash = waitForTransactionHash(consignerHost, ticketID, txSubmissionTime, timeToBroadcast);
+    const txHash = waitForTicketIdCallback(consignerHost, ticketID, txSubmissionTime, timeToBroadcast);
     if (!txHash) return;
     txnData['txHash'] = txHash;
 

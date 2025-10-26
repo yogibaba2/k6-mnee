@@ -1,9 +1,9 @@
 import http from 'k6/http';
-// import crypto from 'k6/crypto';
-// import { base64ToHex } from '../utils/base64Utils.js';
 import encoding from 'k6/encoding';
 import { sleep } from 'k6';
-// import atob from 'atob';
+import file from 'k6/x/file';
+
+const ticketIDsLogFilePath = 'logs.txt';
 
 const defaultOptions = {
     headers: { 
@@ -49,7 +49,7 @@ export function getTransactionHashByTicketID(host, ticketID) {
     return null;
 }
 
-export function waitForTransactionHash(host, ticketID, txSubmissionTime, timeToBroadcast) {
+export function waitForTransactionHashOld(host, ticketID, txSubmissionTime, timeToBroadcast) {
     let txHash = null;
     const trendTags = {
         name: 'Time To Broadcast',
@@ -65,5 +65,32 @@ export function waitForTransactionHash(host, ticketID, txSubmissionTime, timeToB
             timeToBroadcast.add(Date.now() - txSubmissionTime, trendTags);
             return txHash;
         }   
+    }
+}
+
+export function waitForTicketIdCallback(host, ticketID, txSubmissionTime, timeToBroadcast) {
+    let txHash = null;
+    const trendTags = {
+        name: 'Time To Broadcast',
+        method: 'None',
+        status: '200'
+
+    }
+    while (!txHash) {
+       const fileContent = file.readFile(ticketIDsLogFilePath);
+           fileContent.split('\n').forEach((line, index) => {
+               if(line.includes(ticketID)) {
+                   console.log(`Callback received for Ticket ID ${ticketID} - Line ${index + 1}`);
+                   file.removeRowsBetweenValues(ticketIDsLogFilePath, index + 1, index + 1);
+                   
+                   console.log(`Checking for Transaction Hash for Ticket ID: ${ticketID}`);
+                   txHash = getTransactionHashByTicketID(host, ticketID);
+                    if (txHash) {
+                        console.log(`Transaction Hash: ${txHash}`);
+                        timeToBroadcast.add(Date.now() - txSubmissionTime, trendTags);
+                        return txHash;
+                    }
+               } 
+           });      
     }
 }
