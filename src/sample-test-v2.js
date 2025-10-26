@@ -9,7 +9,6 @@ import file from 'k6/x/file';
 
 
 const filePath = './data/transaction_data.txt';
-const ticketIDsFilePath = 'logs.txt';
 
 const wallets = new SharedArray('wallets', function () {
   const f =  JSON.parse(open(`../data/wallets/wallets_${__ENV.ENV}.json`));
