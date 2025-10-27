@@ -87,7 +87,7 @@ export function waitForTicketIdCallback(host, ticketID, txSubmissionTime, timeTo
                    console.log(`User ${__VU} -- Transaction Hash: ${txHash} for TicketId: ${ticketID}`);
                     if (txHash) {
                         timeToBroadcast.add(Date.now() - txSubmissionTime, trendTags);
-                        file.removeRowsBetweenValues(ticketIDsLogFilePath, index + 1, index + 1);
+                        // file.removeRowsBetweenValues(ticketIDsLogFilePath, index + 1, index + 1);
                         return true;
                     }
                }
@@ -101,7 +101,7 @@ export function checktIDInFile(ticketID) {
     fileContent.split('\n').forEach((line, index) => {
         if(line.includes(ticketID)) {
             console.log(`Line ${index + 1}: ${line}`);
-            // file.removeRowsBetweenValues(ticketIDsLogFilePath, index + 1, index + 1);
+            file.removeRowsBetweenValues(ticketIDsLogFilePath, index + 1, index + 1);
         }
     });
     }

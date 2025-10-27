@@ -94,7 +94,7 @@ export default function () {
 
     file.appendString(filePath, `${txHash}\n`);
 
-    sleep(1);
+    sleep(0.5);
 }
 
 
