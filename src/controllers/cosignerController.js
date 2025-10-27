@@ -3,7 +3,7 @@ import encoding from 'k6/encoding';
 import { sleep } from 'k6';
 import file from 'k6/x/file';
 
-const ticketIDsLogFilePath = 'logs.txt';
+const ticketIDsLogFilePath = '../logs.txt';
 
 const defaultOptions = {
     headers: { 
@@ -77,20 +77,31 @@ export function waitForTicketIdCallback(host, ticketID, txSubmissionTime, timeTo
 
     }
     while (!txHash) {
-       const fileContent = file.readFile(ticketIDsLogFilePath);
-           fileContent.split('\n').forEach((line, index) => {
+       const fileContent = file.readFile(ticketIDsLogFilePath); 
+           fileContent.split('\n').some((line, index) => {
                if(line.includes(ticketID)) {
-                   console.log(`Callback received for Ticket ID ${ticketID} - Line ${index + 1}`);
-                   file.removeRowsBetweenValues(ticketIDsLogFilePath, index + 1, index + 1);
+                   console.log(`User ${__VU} -- Callback received for Ticket ID ${ticketID} - Line ${index + 1}`);
                    
                    console.log(`Checking for Transaction Hash for Ticket ID: ${ticketID}`);
                    txHash = getTransactionHashByTicketID(host, ticketID);
+                   console.log(`User ${__VU} -- Transaction Hash: ${txHash} for TicketId: ${ticketID}`);
                     if (txHash) {
-                        console.log(`Transaction Hash: ${txHash}`);
                         timeToBroadcast.add(Date.now() - txSubmissionTime, trendTags);
-                        return txHash;
+                        file.removeRowsBetweenValues(ticketIDsLogFilePath, index + 1, index + 1);
+                        return true;
                     }
-               } 
-           });      
+               }
+           });  
     }
+    return txHash;
 }
+
+export function checktIDInFile(ticketID) {
+    const fileContent = file.readFile(ticketIDsLogFilePath);
+    fileContent.split('\n').forEach((line, index) => {
+        if(line.includes(ticketID)) {
+            console.log(`Line ${index + 1}: ${line}`);
+            // file.removeRowsBetweenValues(ticketIDsLogFilePath, index + 1, index + 1);
+        }
+    });
+    }

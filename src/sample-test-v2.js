@@ -1,7 +1,7 @@
 import { sleep } from 'k6';
 import { Trend } from 'k6/metrics';
 import { transferTokens, transferTokensBinary } from './controllers/treasuryController.js';
-import { signTransaction_v2, waitForTransactionHash } from './controllers/cosignerController.js';
+import { signTransaction_v2, waitForTicketIdCallback } from './controllers/cosignerController.js';
 import { checkMempool } from './controllers/wocController.js';
 import { SharedArray } from 'k6/data';
 import envConfig from '../config/config.js';
