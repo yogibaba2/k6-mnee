@@ -26,6 +26,16 @@ export function writeTransactionData(txData, filePath) {
     }
 }
 
+
+export function writeToFile(txData, filePath) {
+    try {
+        fs.writeFileSync(filePath, JSON.stringify(txData, null, 2), 'utf8');
+        console.log(`Transaction data written to ${filePath}`);
+    } catch (error) {
+        console.error('Error handling transaction data file:', error);
+    }
+}
+
 export function appendTransactionData(txnData, tnx) {
      txnData.push({
             txHash: txData.txHash,

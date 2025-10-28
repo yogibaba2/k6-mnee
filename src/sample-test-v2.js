@@ -71,11 +71,12 @@ export default function () {
     if (!rawtx) return;
 
     // Step 2: Sign the transaction using Cosigner API
-    const txSubmissionTime = Date.now();
+    
     const ticketID = signTransaction_v2(consignerHost, rawtx);
     if (!ticketID) return;
     console.log(`User ${__VU} -- TicketID: ${ticketID}`);
-
+    const txSubmissionTime = Date.now();
+    
     // Step 3: Get transaction hash
     const found = waitForTicketIdCallback( ticketID);
     if (!found) return;
