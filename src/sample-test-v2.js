@@ -1,7 +1,7 @@
 import { sleep } from 'k6';
 import { Trend } from 'k6/metrics';
 import { transferTokens, transferTokensBinary } from './controllers/treasuryController.js';
-import { signTransaction_v2, waitForTicketIdCallback } from './controllers/cosignerController.js';
+import { signTransaction_v2, waitForTicketIdCallback, waitForTransactionHash } from './controllers/cosignerController.js';
 import { checkMempool } from './controllers/wocController.js';
 import { SharedArray } from 'k6/data';
 import envConfig from '../config/config.js';
@@ -51,10 +51,7 @@ const wocConfig = envConfig['woc'] || {};
 const wocHost = wocConfig.HOST || '';
 
 
-export default function () {
-
-    let txnData = {};
-    
+export default function () {    
     const conCurrentWallet = wallets[__VU - 1];
 
     // Step 1: Create and transfer tokens using Treasury API
@@ -80,19 +77,21 @@ export default function () {
     console.log(`User ${__VU} -- TicketID: ${ticketID}`);
 
     // Step 3: Get transaction hash
-    const txHash = waitForTicketIdCallback(consignerHost, ticketID, txSubmissionTime, timeToBroadcast);
+    const found = waitForTicketIdCallback(consignerHost, ticketID, txSubmissionTime, timeToBroadcast);
+    if (!found) return;
+    
+    const txHash = waitForTransactionHash(consignerHost, ticketID, txSubmissionTime, timeToBroadcast);
     if (!txHash) return;
-    txnData['txHash'] = txHash;
 
     // // const txHash = "d0b96c7573c034f4aff2a19d159648067dcc635c5f02c691facc67cb6e4fe901";
     // console.log(`Transaction Hash: ${typeof  txHash}`);
-    const startTime = Date.now();
+    // const startTime = Date.now();
     // Step 4: Check mempool using WoC API
-    const inMempool = checkMempool(wocHost, txHash, startTime, mempoolDuration);
-    if (!inMempool) return;
-    txnData['mempoolTime'] = inMempool;
+    // const inMempool = checkMempool(wocHost, txHash, startTime, mempoolDuration);
+    // if (!inMempool) return;
+    // txnData['mempoolTime'] = inMempool;
 
-    file.appendString(filePath, `${txHash}\n`);
+    file.appendString(filePath, `${txHash} ${Date.now()}\n`);
 
     sleep(0.5);
 }

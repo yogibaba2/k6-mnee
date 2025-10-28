@@ -49,7 +49,7 @@ export function getTransactionHashByTicketID(host, ticketID) {
     return null;
 }
 
-export function waitForTransactionHashOld(host, ticketID, txSubmissionTime, timeToBroadcast) {
+export function waitForTransactionHash(host, ticketID, txSubmissionTime, timeToBroadcast) {
     let txHash = null;
     const trendTags = {
         name: 'Time To Broadcast',
@@ -68,32 +68,29 @@ export function waitForTransactionHashOld(host, ticketID, txSubmissionTime, time
     }
 }
 
-export function waitForTicketIdCallback(host, ticketID, txSubmissionTime, timeToBroadcast) {
-    let txHash = null;
-    const trendTags = {
-        name: 'Time To Broadcast',
-        method: 'None',
-        status: '200'
-
-    }
-    while (!txHash) {
+export function waitForTicketIdCallback(ticketID) {
+    let found = false;
+   
+    while (!found) {
        const fileContent = file.readFile(ticketIDsLogFilePath); 
            fileContent.split('\n').some((line, index) => {
                if(line.includes(ticketID)) {
                    console.log(`User ${__VU} -- Callback received for Ticket ID ${ticketID} - Line ${index + 1}`);
                    
-                   console.log(`Checking for Transaction Hash for Ticket ID: ${ticketID}`);
-                   txHash = getTransactionHashByTicketID(host, ticketID);
-                   console.log(`User ${__VU} -- Transaction Hash: ${txHash} for TicketId: ${ticketID}`);
-                    if (txHash) {
-                        timeToBroadcast.add(Date.now() - txSubmissionTime, trendTags);
-                        // file.removeRowsBetweenValues(ticketIDsLogFilePath, index + 1, index + 1);
-                        return true;
-                    }
+                //    console.log(`Checking for Transaction Hash for Ticket ID: ${ticketID}`);
+                //    txHash = getTransactionHashByTicketID(host, ticketID);
+                //    console.log(`User ${__VU} -- Transaction Hash: ${txHash} for TicketId: ${ticketID}`);
+                //     if (txHash) {
+                //         timeToBroadcast.add(Date.now() - txSubmissionTime, trendTags);
+                //         // file.removeRowsBetweenValues(ticketIDsLogFilePath, index + 1, index + 1);
+                //         return true;
+                //     }
+                found = true;
+                return true;
                }
            });  
     }
-    return txHash;
+    return found;
 }
 
 export function checktIDInFile(ticketID) {

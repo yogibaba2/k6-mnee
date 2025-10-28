@@ -15,13 +15,7 @@ export function writeTransactionData(txData, filePath) {
         }
 
         // Add new transaction data
-        existingData.push({
-            txHash: txData.txHash,
-            firstConfirmationTime: txData.firstConfirmationTime,
-            blockHeight: txData.blockHeight,
-            sixthConfirmationTime: txData.sixthConfirmationTime,
-            timestamp: Date.now()
-        });
+        existingData.push(txData);
 
         // Write updated data back to file
         fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2), 'utf8');

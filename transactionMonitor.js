@@ -27,11 +27,11 @@ function processTransaction(txHash) {
     }
 
     const txData = {
-        txHash: txHash,
+        txHash: txHash.split(' ')[0],
         firstConfirmationTime: null,
         blockHeight: null,
         sixthConfirmationTime: null,
-        timestamp: Date.now(),
+        timestamp: txHash.split(' ')[1],
         status: 'pending'
     };
 
