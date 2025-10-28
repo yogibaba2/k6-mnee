@@ -77,7 +77,7 @@ export default function () {
     console.log(`User ${__VU} -- TicketID: ${ticketID}`);
 
     // Step 3: Get transaction hash
-    const found = waitForTicketIdCallback(consignerHost, ticketID, txSubmissionTime, timeToBroadcast);
+    const found = waitForTicketIdCallback( ticketID);
     if (!found) return;
     
     const txHash = waitForTransactionHash(consignerHost, ticketID, txSubmissionTime, timeToBroadcast);
