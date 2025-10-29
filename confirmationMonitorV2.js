@@ -12,7 +12,7 @@ const JSON_FILE_PATH = path.join(__dirname, './data/transaction_data.json');
 const BATCH_SIZE = 20;
 const CHECK_INTERVAL = 10000; // Check every 30 seconds
 const WOC_API_BASE = 'https://api.whatsonchain.com/v1/bsv/main';
-const WOC_RATE_LIMIT = 3;
+const WOC_RATE_LIMIT = 5;
 
 // Helper function to make HTTP requests
 function makeHttpRequest(options, postData = null) {
@@ -73,7 +73,7 @@ async function fetchBlockDetails(blockHeight) {
     };
 
     try {
-        await sleep(1000/WOC_RATE_LIMIT)
+        await sleep(100)
         const response = await makeHttpRequest(options);
         if (response.data && response.data.tx) {
             // if (response.data.tx.includes(txHash)) {
@@ -92,10 +92,11 @@ async function processTransactions() {
         // Read current transaction data
         const fileContent = fs.readFileSync(JSON_FILE_PATH, 'utf8');
         let transactions = JSON.parse(fileContent);
-        let modified = false;
+        // let modified = false;
 
         // Process transactions in batches
         for (let i = 0; i < transactions.length; i += BATCH_SIZE) {
+            let modified = false;
             console.log(`processing batch from ${i} to ${i + BATCH_SIZE}`)
             const batch = transactions.slice(i, i + BATCH_SIZE);
             const batchTxIds = batch
@@ -145,17 +146,17 @@ async function processTransactions() {
                 const tx = batch[j];
                 transactions[i + j] = tx;
             }
-
+             // Write updated data back to file if modified
+            if (modified) {
+                console.log(`Writing updated transaction data to file...`);
+                fs.writeFileSync(JSON_FILE_PATH, JSON.stringify(transactions, null, 2));
+                console.log('Transaction data updated');
+            }
             // Add delay between batches to respect rate limits
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await sleep(100);
         }
 
-        // Write updated data back to file if modified
-        if (modified) {
-            console.log(`Writing updated transaction data to file...`);
-            fs.writeFileSync(JSON_FILE_PATH, JSON.stringify(transactions, null, 2));
-            console.log('Transaction data updated');
-        }
+       
 
     } catch (error) {
         console.error('Error processing transactions:', error);
