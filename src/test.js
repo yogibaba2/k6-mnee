@@ -1,20 +1,21 @@
-import http from 'k6/http';
-import { check } from 'k6';
-import file from 'k6/x/file';
-import { checktIDInFile, waitForTicketIdCallback } from './controllers/cosignerController.js';
+import exec from 'k6/execution';
 
-const filepath = 'logs.txt';
+
+ export const options = {
+    discardResponseBodies: true,
+    scenarios: {
+        contacts: {
+        executor: 'per-vu-iterations',
+        vus: 10,
+        iterations: 10
+        },
+    },
+};
 
 export default function () {
-    
 
-   console.log(`${__VU} -- ${__ITER} -- before ${Date.now()}`)
-
-   let found =  waitForTicketIdCallback(tid);
-
-   console.log(`${__VU} -- ${__ITER}  -- ticket id found -- ${found} at ${Date.now()}`)
-
-
+    console.log(`${__VU} -- ${__ITER}`)
+    console.log((__VU * exec.test.options.iterations) + __ITER)
     // Remove rows from text file/clear file content/delete file
     // file.removeRowsBetweenValues(filepath, 2, 2);
     
