@@ -6,8 +6,7 @@ import envConfig from '../config/config.js';
 import file from 'k6/x/file';
 
 
-const filePath = './data/transaction_data.txt';
-const ticketIDFile = './data/transaction_data.txt';
+const ticketIDFile = './data/ticketID_data.txt';
 
 const rawTxns = new SharedArray('rawTxns', function () {
   const f =  JSON.parse(open(`../data/rawTx.json`));
@@ -20,8 +19,8 @@ export const options = {
     scenarios: {
         contacts: {
         executor: 'per-vu-iterations',
-        vus: 10,
-        iterations: 10
+        vus: 500,
+        iterations: 195
         },
     },
    cloud: {
@@ -37,11 +36,6 @@ export const options = {
 const consignerConfig = envConfig['mnee'][__ENV.ENV]?.consigner || {};
 const consignerHost = consignerConfig.HOST || '';
 
-// 0 => 0, 10, 20, ..., 90
-// 1 => 1, 11, 21, ..., 91
-// ...
-// 9 => 9, 19, 29, ..., 99
-
 export default function () {    
     
     const rawtx = rawTxns[(__VU-1) + (__ITER * 10)];
@@ -52,7 +46,7 @@ export default function () {
     // console.log(`User ${__VU} -- ${__ITER}-- rawtx: ${rawtx}`);
     console.log(`User ${__VU} -- ${__ITER}-- TicketID: ${ticketID}`);
     
-    file.appendString(filePath, `${ticketID}\n`);
+    file.appendString(ticketIDFile, `${ticketID}\n`);
 
     sleep(0.5);
 }
