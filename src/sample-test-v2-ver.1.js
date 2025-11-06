@@ -19,8 +19,8 @@ export const options = {
     scenarios: {
         contacts: {
         executor: 'per-vu-iterations',
-        vus: 500,
-        iterations: 195
+        vus: 150,
+        iterations: 100
         },
     },
    cloud: {
@@ -37,8 +37,8 @@ const consignerConfig = envConfig['mnee'][__ENV.ENV]?.consigner || {};
 const consignerHost = consignerConfig.HOST || '';
 
 export default function () {    
-    
-    const rawtx = rawTxns[(__VU-1) + (__ITER * 10)];
+    // Step 1: Get raw transaction from shared array
+    const rawtx = rawTxns[((__VU-1) * 100) + __ITER];
 
     // Step 2: Sign the transaction using Cosigner API
     const ticketID = signTransaction_v2(consignerHost, rawtx);
