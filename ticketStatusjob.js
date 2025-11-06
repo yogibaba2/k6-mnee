@@ -8,13 +8,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Configuration
-const JSON_FILE_PATH = path.join(__dirname, './data/.json');
-const BATCH_SIZE = 20;
-const CHECK_INTERVAL = 10000; // Check every 30 seconds
-const API_BASE = 'https://stg-api-cosigner.mnee.net';
+const JSON_FILE_PATH = path.join(__dirname, "./data/ticketID_data.txt");
+const OUTPUT_FILE_PATH = path.join(__dirname, "./data/transaction_data.json");
+const CONSIGNER_HOST = 'stg-api-cosigner.mnee.net';
+const TICKET_ID_PATH = '/v1/ticket?ticketID=';
+const PROCCESSED_TICKETS = [];
 
 // Helper function to make HTTP requests
-function makeHttpRequest(options, postData = null) {
+async function makeHttpRequest(options, postData = null) {
     return new Promise((resolve, reject) => {
         const req = https.request(options, (res) => {
             let data = '';
@@ -42,139 +43,64 @@ function makeHttpRequest(options, postData = null) {
     });
 }
 
-async function checkTransactionConfirmations(txBatch) {
+async function writeProccessedTransaction() {
+    // write processed transaction data to output file
+    console.log('Writing processed transaction data to file...');
+    fs.writeFileSync(OUTPUT_FILE_PATH, JSON.stringify(PROCCESSED_TICKETS, null, 2));
+    console.log(`Processed transaction data written to ${OUTPUT_FILE_PATH}`);
+}
+
+async function fetchTicketIdStatus(ticketID) {
     const options = {
-        hostname: 'api.whatsonchain.com',
-        path: '/v1/bsv/main/txs/status',
-        method: 'POST',
+        hostname: CONSIGNER_HOST,
+        path: `${TICKET_ID_PATH}${ticketID}`,
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         }
     };
 
     try {
-        // console.log(`Checking confirmations for batch: ${txBatch}`);
-        const response = await makeHttpRequest(options, { txids: txBatch });
+        // console.log(`Checking status for ticket id = ${ticketID}`);
+        const response = await makeHttpRequest(options);
         // console.log('Response data:', response.data);
         return response.data;
     } catch (error) {
-        console.error('Error checking confirmations:', error);
+        console.error(`Error checking for ticket status: ${ticketID}`, error);
         return null;
     }
 }
 
-async function checkBlockForTransaction(blockHeight, txHash) {
-    const options = {
-        hostname: 'api.whatsonchain.com',
-        path: `/v1/bsv/main/block/height/${blockHeight}`,
-        method: 'GET'
-    };
-
+async function processTicketIdsFromFile() {
     try {
-        const response = await makeHttpRequest(options);
-        if (response.data && response.data.tx) {
-            // if (response.data.tx.includes(txHash)) {
-                return response.data.time;
-            // }
+        const data = fs.readFileSync(JSON_FILE_PATH, 'utf-8');
+        const ticketIDs = data.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+        console.log(`Found ${ticketIDs.length} ticket IDs to process.`);
+        // make below loop multi threaded 
+        
+        for (const ticketID of ticketIDs) {
+           const response = await fetchTicketIdStatus(ticketID);
+           if (response) {
+            console.log(`Ticket ID: ${ticketID}, Status: ${response.status}`);
+                let transaction_data = {
+                    ticketID: ticketID,
+                    txHash: response.tx_id,
+                    firstConfirmationTime: null,
+                    blockHeight: null,
+                    sixthConfirmationTime: null,
+                    timestamp: new Date(response.updatedAt).getTime(),
+                    broadcastTime: new Date(response.updatedAt) - new Date(response.createdAt),
+                    status: response.status,
+                };
+                PROCCESSED_TICKETS.push(transaction_data);
+           }
         }
-        return false;
     } catch (error) {
-        console.error(`Error checking block ${blockHeight}:`, error.message);
-        return false;
+        console.error('Error reading ticket IDs from file:', error);
+        throw error;
     }
-}
-
-async function processTransactions() {
-    try {
-        // Read current transaction data
-        const fileContent = fs.readFileSync(JSON_FILE_PATH, 'utf8');
-        let transactions = JSON.parse(fileContent);
-        let modified = false;
-
-        // Process transactions in batches
-        for (let i = 0; i < transactions.length; i += BATCH_SIZE) {
-            console.log(`processing batch from ${i} to ${i + BATCH_SIZE}`)
-            const batch = transactions.slice(i, i + BATCH_SIZE);
-            const batchTxIds = batch
-                .filter(tx => 
-                    (tx.firstConfirmationTime == null || tx.sixthConfirmationTime == null)
-                )
-                .map(tx => tx.txHash);
-            
-            let confirmations = null;
-            // Check confirmations for the batch
-            if (batchTxIds.length == 0) {
-                console.log('No transactions in batch to check confirmations');
-            } else
-            {
-                console.log(`Checking confirmations for batch of: ${batchTxIds.length}`);
-                confirmations = await checkTransactionConfirmations(batchTxIds);
-                confirmations = confirmations ? confirmations.filter(conf => conf && conf.confirmations) : null;
-                if (!confirmations || confirmations.length == 0) {
-                    console.log('No confirmations found in batch');
-                } else {
-                    for (const conf of confirmations) {
-                        const tx = batch.find(tx => tx.txHash === conf.txid);
-                        if (tx && !tx.firstConfirmationTime && (conf.confirmations >= 1 && conf.confirmations < 6)) {
-                            // tx.firstConfirmationTime = conf.blocktime;
-                            tx.firstConfirmationTime = Date.now() - tx.timestamp; ;
-                            tx.blockHeight = conf.blockheight;
-                            modified = true;
-                            console.log(`First confirmation for ${tx.txHash} at block ${tx.blockHeight} and time ${tx.firstConfirmationTime}`);
-                        
-                        }
-                        if (tx && (conf.confirmations >= 6)) {
-                            // tx.firstConfirmationTime = conf.blocktime;
-                            tx.sixthConfirmationTime = Date.now() - tx.timestamp; 
-                            modified = true;
-                            console.log(`Sixth confirmation for ${tx.txHash} at time ${tx.sixthConfirmationTime}`);
-                        
-                        }
-                    }
-                }
-                
-            } 
-            
-            
-            //check for sixt confirmation
-            // const batchForSixth = batch.filter(tx => tx.firstConfirmationTime && tx.blockHeight && !tx.sixthConfirmationTime);
-            // if (batchForSixth.length == 0) {
-            //     console.log('No transactions in batch to check sixth confirmation');
-            // } else
-            // {
-            //     for (const stx of batchForSixth) {
-            //         const tx = batch.find(tx => tx.txHash === stx.txHash);
-            //         const sixthBlockHeight = stx.blockHeight + 5;
-            //         const sixthTime = await checkBlockForTransaction(sixthBlockHeight, stx.txHash);
-
-            //         if (sixthTime) {
-            //                 tx.sixthConfirmationTime = sixthTime;
-            //                 modified = true;
-            //                 console.log(`Sixth confirmation for ${tx.txHash} at and time ${tx.sixthConfirmationTime}`);
-            //             }
-
-            //     }
-            // }
-
-            // Update transaction in the main array
-            for (let j = 0; j < batch.length; j++) {
-                const tx = batch[j];
-                transactions[i + j] = tx;
-            }
-
-            // Add delay between batches to respect rate limits
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        }
-
-        // Write updated data back to file if modified
-        if (modified) {
-            console.log(`Writing updated transaction data to file...`);
-            fs.writeFileSync(JSON_FILE_PATH, JSON.stringify(transactions, null, 2));
-            console.log('Transaction data updated');
-        }
-
-    } catch (error) {
-        console.error('Error processing transactions:', error);
+    finally {
+        await writeProccessedTransaction();
     }
 }
 
@@ -182,40 +108,33 @@ async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function startMonitoring() {
-    console.log('Starting confirmation monitor...');
-    console.log(`Monitoring file: ${JSON_FILE_PATH}`);
-    console.log(`Batch size: ${BATCH_SIZE}`);
-    console.log(`Check interval: ${CHECK_INTERVAL}ms`);
-
-    // Flag to control the monitoring loop
-    let isRunning = true;
-
+async function startProcessing() {
+    console.log(`checking file: ${JSON_FILE_PATH}`);
+    
     // Handle graceful shutdown
     process.on('SIGINT', () => {
-        console.log('\nStopping confirmation monitor...');
-        isRunning = false;
+        console.log('\nStopping process...');
+        writeProccessedTransaction()
+        process.exit(0);
     });
 
-    // Continuous monitoring loop
-    while (isRunning) {
-        try {
-            console.log('Processing transactions...');
-            await processTransactions();
-            console.log(`Processing complete. Waiting ${CHECK_INTERVAL}ms before next check...`);
-            await sleep(CHECK_INTERVAL);
-        } catch (error) {
-            console.error('Error in processing cycle:', error);
-            // Still wait before retrying on error
-            await sleep(CHECK_INTERVAL);
-        }
-    }
 
-    process.exit(0);
+    try {
+        console.log('Processing Ticket ids...');
+        await processTicketIdsFromFile();
+        console.log(`Processing complete. closing...`);
+    } catch (error) {
+        console.error('Error in processing cycle:', error);
+    }
+    
+
+   
 }
 
+// await fetchTicketIdStatus('09c30834-25e7-4d13-9fc6-0dfe1a411917');
+
 // Start the monitoring process
-startMonitoring().catch(error => {
+startProcessing().catch(error => {
     console.error('Error in monitoring process:', error);
     process.exit(1);
 });
