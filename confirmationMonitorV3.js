@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Configuration
-const JSON_FILE_PATH = path.join(__dirname, "../perf reports/500VU_250k_TSX_29_OCT_25/transaction_data.json");
+const JSON_FILE_PATH = path.join(__dirname, "./data/transaction_data.json");
 const BATCH_SIZE = 20;
 const CHECK_INTERVAL = 10000; // Check every 30 seconds
 const WOC_API_BASE = 'https://api.whatsonchain.com/v1/bsv/main';
@@ -131,15 +131,18 @@ async function processTransactions() {
                     break;
                 }
             }
-            blockList.find(block => {
-                if(block.height === (tx.blockHeight + 5)){
-                    tx.sixthConfirmationTime = Math.abs(Math.round(block.time - (tx.timestamp/1000)));
-                    console.log(`Transaction ${tx.txHash} sixth confirmation time after ${tx.sixthConfirmationTime} seconds.`);
-                    return true;
-                }
-            });
+            
+            if (tx.blockHeight != null) {
+                blockList.find(block => {
+                    if (block.height === (tx.blockHeight + 5)) {
+                        tx.sixthConfirmationTime = Math.abs(Math.round(block.time - (tx.timestamp/1000)));
+                        console.log(`Transaction ${tx.txHash} sixth confirmation time after ${tx.sixthConfirmationTime} seconds.`);
+                        return true;
+                    }
+                });
+            }
             if(tx.firstConfirmationTime && tx.sixthConfirmationTime){
-                tx.status = 'confirmed';
+                tx.status = 'processed';
             }
         });
        
