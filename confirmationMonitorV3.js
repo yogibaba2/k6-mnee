@@ -162,8 +162,13 @@ async function prepareBlockDetails() {
         const fileContent = fs.readFileSync(JSON_FILE_PATH, 'utf8');
         let transactions = JSON.parse(fileContent);
         
+
+
         //get first and last transaction
-        const boundaryTxs = [transactions[0].txHash, transactions[transactions.length - 1].txHash];
+        const boundaryTxs = [
+            transactions.find(tx => (tx.status === 'MINED' || tx.status === 'SUCCESS')).txHash,
+            transactions.findLast(tx => (tx.status === 'MINED' || tx.status === 'SUCCESS')).txHash
+        ];
        
         //check transacition block heights
         const confirmations = await checkTransactionConfirmations(boundaryTxs);
