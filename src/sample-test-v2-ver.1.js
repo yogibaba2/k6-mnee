@@ -20,7 +20,8 @@ export const options = {
         contacts: {
         executor: 'per-vu-iterations',
         vus: 150,
-        iterations: 100
+        iterations: 100,
+        maxDuration: '6h'
         },
     },
    cloud: {

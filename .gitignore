@@ -4,3 +4,6 @@ node_modules
 # report and logs
 reports
 html-report.html
+mnee-tool/*_chunks
+rawTx
+*wallets.json

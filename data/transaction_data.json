@@ -1,0 +1,502 @@
+[
+  {
+    "ticketID": "09c30834-25e7-4d13-9fc6-0dfe1a411917",
+    "txHash": "29331aba3935575fccdf5fd7b79378bf2ce2f43dc25258ef26d872d345c16140",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192595080,
+    "broadcastTime": 11090,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "57a8e7c9-1c5d-4f07-a01b-27d67ca706e1",
+    "txHash": "eab207633fc26ced9fd5cfeda795d6e03abc417437d71c17c985f447c7dd0c61",
+    "firstConfirmationTime": 794,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2651,
+    "timestamp": 1762192588725,
+    "broadcastTime": 4649,
+    "status": "processed"
+  },
+  {
+    "ticketID": "03545704-86c0-4778-9fe4-846d0167c237",
+    "txHash": "f56698951123f704ff0465295fceea1b062e9f9721d2d84575ef5f2fb15b8618",
+    "firstConfirmationTime": 794,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2651,
+    "timestamp": 1762192588669,
+    "broadcastTime": 4542,
+    "status": "processed"
+  },
+  {
+    "ticketID": "ed24038c-5cc4-4ac3-b8b6-aa30165640af",
+    "txHash": "88e7e71913a2831ca0afc234ee83f112aef09e21a24823de30d1c6d061f9fe54",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594951,
+    "broadcastTime": 10828,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "0f1e15e2-9372-4ed9-8e62-c5c23a4c0d7c",
+    "txHash": "c14dee66bb52af1e799c0f60415c6ccf43570e766bdfc54dda32f4ecc372ca62",
+    "firstConfirmationTime": 792,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2649,
+    "timestamp": 1762192590625,
+    "broadcastTime": 6463,
+    "status": "processed"
+  },
+  {
+    "ticketID": "7fd87ffb-bd4c-47f5-96c6-760b38e32e63",
+    "txHash": "4614c7e7070ced28652f638e371fc12ba87427b105bc282dd66c750ee86381c1",
+    "firstConfirmationTime": 796,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2653,
+    "timestamp": 1762192586540,
+    "broadcastTime": 2341,
+    "status": "processed"
+  },
+  {
+    "ticketID": "dba9cf0e-41b2-4cb4-8e6e-fc6f55f21cbe",
+    "txHash": "c5e937aa255c92127eb24306fcebf016d70fd24c9c99c9669fd54806c9940306",
+    "firstConfirmationTime": 792,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2649,
+    "timestamp": 1762192591068,
+    "broadcastTime": 6835,
+    "status": "processed"
+  },
+  {
+    "ticketID": "73424ac9-904e-4a40-bedb-d9e77e13be8f",
+    "txHash": "1f01ef706444158918959253cfb107fe4bbe793df368930de2c11ad0572498ad",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192595170,
+    "broadcastTime": 10953,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "051658a3-f200-4b16-9259-a73e886e8e23",
+    "txHash": "5427d2381a00b5548b4d35cced785c487e57fc6af984010472f4fa2d84f25c97",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594534,
+    "broadcastTime": 10277,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "b15a833e-f846-4fb4-b95c-1a45277bd6d5",
+    "txHash": "87fb490bb7883c9dc5d8b5d14016ffd77f67929403f0e442cd74660ed50a4b92",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594531,
+    "broadcastTime": 10215,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "b3f3d583-94fe-480b-b4b6-e8633c2fa4ac",
+    "txHash": "af82a39a90c2aa7e093827dba393339dbdeb0edfe56146dfa38f3b855d0a1ccc",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594707,
+    "broadcastTime": 10387,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "1cf31f9d-32ea-4a49-b5e7-1b7a894e3707",
+    "txHash": "c8ea20f69186dd0e235ea50e29f8e147973c42c64bc4c525a52c2bb0c4ee85ba",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594741,
+    "broadcastTime": 10564,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "c1d832b2-aeb5-4848-8d4e-3481c2ea3338",
+    "txHash": "c6cd7b1e1a02c2227e0c757809d85ad2664f464297a3f00beaea63f601d27655",
+    "firstConfirmationTime": 794,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2651,
+    "timestamp": 1762192589040,
+    "broadcastTime": 4859,
+    "status": "processed"
+  },
+  {
+    "ticketID": "4330d2d1-8451-4961-8b2b-d6b014cd009d",
+    "txHash": "4d7c4835cf87bc496278cf668b44dc109e5d4f4f71594215278342c74b7d2728",
+    "firstConfirmationTime": 794,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2651,
+    "timestamp": 1762192588972,
+    "broadcastTime": 4615,
+    "status": "processed"
+  },
+  {
+    "ticketID": "32d8b86f-cd8c-4f78-a9aa-b746d87957cf",
+    "txHash": "66ac5983fb5b27030d93457c846872d9446d5c80c4229fb1bc5d6704409bdb5f",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192595080,
+    "broadcastTime": 10726,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "6b3ff405-e5f6-4596-ba8f-892955cb3904",
+    "txHash": "2b03c1779676519872a544662174428d11a63cd3d82f413a838a238882553c4f",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192595140,
+    "broadcastTime": 10781,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "969b504f-5c82-4881-9d1d-7dbe8952ebe1",
+    "txHash": "19656d3b962601069b362347450c08f46176ddfb6ae1700d1d5eb9bdc6f56a53",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594972,
+    "broadcastTime": 10611,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "7b66a3f2-d0cc-4536-8f08-a5a040330930",
+    "txHash": "07fb6a93c08f4a76953b3f62350339b397ecf0421342f8a57fb28ffd659e847d",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594831,
+    "broadcastTime": 10560,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "67fd9823-1d62-4d72-809f-4178a7d5ce0b",
+    "txHash": "64ba5adb4ab3cfd29cc018c2af62065311f4897020b6db58f9ef016ef09fd4ac",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192595230,
+    "broadcastTime": 10793,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "774b0666-14bb-488f-a2ed-87e587074d93",
+    "txHash": "4bccbe2ff8b90add1a292ace1e4222c817d012a10ed2fa0470f90bf4996a19d8",
+    "firstConfirmationTime": 791,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2648,
+    "timestamp": 1762192591864,
+    "broadcastTime": 7430,
+    "status": "processed"
+  },
+  {
+    "ticketID": "efa01286-2811-4b07-a6d8-d22e396f7d2b",
+    "txHash": "f542642765ae821c8eddaacc0b73af1cfc4ce7504e5931235637653c320fd170",
+    "firstConfirmationTime": 793,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2650,
+    "timestamp": 1762192590224,
+    "broadcastTime": 5740,
+    "status": "processed"
+  },
+  {
+    "ticketID": "665f9e35-60dc-44a1-8e87-cf63a1835cb5",
+    "txHash": "e4521f8756ca65fdbe998fe42b2ef789634b0147358dbec98fc4de61809fd4ff",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594740,
+    "broadcastTime": 10085,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "1dc7c0ab-eae5-441a-acf0-1ad1e3abe966",
+    "txHash": "cc7bc1957d0ef37202b02911f50c47d3627bce00536f29d516788df895d40b7b",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594741,
+    "broadcastTime": 10105,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "f4fb1d8e-5d43-442c-ab78-4b275aa68ac1",
+    "txHash": "9a6e32b37ec4df9144d484560b2e11a28f71e038c1ce1481eb468e2eb2b9bce8",
+    "firstConfirmationTime": 791,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2648,
+    "timestamp": 1762192591864,
+    "broadcastTime": 7230,
+    "status": "processed"
+  },
+  {
+    "ticketID": "6a9456db-b933-4d2b-87fe-c7c3bbc86acd",
+    "txHash": "4c76472eeb1d5795154e03c40b057808fc19a1bb0aa0bf6685a1ebb9b6d395c2",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594610,
+    "broadcastTime": 9937,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "346658d2-4aff-4047-83fa-aa12421cf863",
+    "txHash": "1b5dddbe2a29755443a1196989848b43b0a39a1c30ce4ffee5c7e0e64a3077ad",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594621,
+    "broadcastTime": 9911,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "0b08c74c-4a9a-4561-98a4-8612b03ff537",
+    "txHash": "34822cf4b15648cdd807e00c9f5dc4bec3e74910ffd95b00e5e9de0223118767",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192595080,
+    "broadcastTime": 10403,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "71bc9f36-a298-4019-b4a8-baccb31aa94e",
+    "txHash": "7120808416421f7cbd018d831aeca756b728b2b41ddd2f0e85bf87a9991622bf",
+    "firstConfirmationTime": 794,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2651,
+    "timestamp": 1762192589113,
+    "broadcastTime": 4363,
+    "status": "processed"
+  },
+  {
+    "ticketID": "142e4918-6a33-4066-8a60-fc0a46711b2f",
+    "txHash": "b2ee675add1875e8ca7b02e0359231833506f7d8d59c8b047f928f1b87b8cc39",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192595107,
+    "broadcastTime": 10338,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "2f07f7ce-3d75-44c7-9125-6fd899e9597f",
+    "txHash": "4ee55cb84d561b55222cae94d51ba896aa1937b59e221967ffae40061557d22e",
+    "firstConfirmationTime": 794,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2651,
+    "timestamp": 1762192589107,
+    "broadcastTime": 4343,
+    "status": "processed"
+  },
+  {
+    "ticketID": "7e0e121d-d49d-4197-911f-c396a143b23c",
+    "txHash": "1ba8004cc645aa9dfb4a152482d06c0043498f4076dd4f9a3439492fbc7cc324",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192592630,
+    "broadcastTime": 7775,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "51830202-0c6d-4d7d-88ce-374a34fa977e",
+    "txHash": "5d79e4bb8ec66a16ac2a0903d70db6edc2e7debd6028da59c32e2a4a9f66febe",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594951,
+    "broadcastTime": 10174,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "78adcc07-4ac2-4ea1-afc3-76f6c5522ef5",
+    "txHash": "ebfadfe41a92ea837e6bcacccb048cdd3eff9def56df90c8073c0ca129be1370",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594952,
+    "broadcastTime": 10126,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "876614fb-cd19-45f2-bb32-416918da53ea",
+    "txHash": "e49032b16815ba6a083868f38707ff6cb6ee73049755af1e9517c843f6e68f05",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594708,
+    "broadcastTime": 9780,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "06961d17-fae0-47cd-9c12-a6b4e9739e99",
+    "txHash": "bf08fca4cdd53412a55ba8dd32a0979c00bbc933cc7a45626b726636bceabce1",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192595142,
+    "broadcastTime": 10192,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "67e96f95-8803-4033-a17d-560487270d65",
+    "txHash": "dd223587c679b4d69e7ced6084be1e95ef2e7cb0dba512408ea18b69aace91e5",
+    "firstConfirmationTime": 790,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2647,
+    "timestamp": 1762192593170,
+    "broadcastTime": 8239,
+    "status": "processed"
+  },
+  {
+    "ticketID": "e12a79fd-01de-4d7a-9b96-d70dca32aca4",
+    "txHash": "5cd5533618fc7736d77cea18db37c7e20461c5b11581ddecdebb0fcf1a8ea938",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594554,
+    "broadcastTime": 9624,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "9d0a1d23-d5d7-42dc-b436-b1a43dc8d900",
+    "txHash": "d81b2c4e9f4d92d4c8963a6f3e72a1727a4e5a8d7a52b220e1cacd49c6ab1995",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594970,
+    "broadcastTime": 10041,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "1a1aad8d-6ee3-47a1-971b-e3f79f25f139",
+    "txHash": "eb10f26914b0079a976fe75a12d996b482fb66015277f95084b3dbac3e5a9d8f",
+    "firstConfirmationTime": 789,
+    "blockHeight": 921546,
+    "sixthConfirmationTime": 2646,
+    "timestamp": 1762192594339,
+    "broadcastTime": 9408,
+    "status": "processed"
+  },
+  {
+    "ticketID": "340fc6dd-6f07-4b26-9c97-ccf0f7e4cca7",
+    "txHash": "fdc9d83105363fcd9f60713b18c8c43f25cf40459e1518e166c06e8c294657ba",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594567,
+    "broadcastTime": 9609,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "3c90372e-f817-4061-b661-3b377981a15e",
+    "txHash": "952a43e142c94279f5f6b7a40b2fa6af32874ee1b7852deca47a03fdec6e1196",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594912,
+    "broadcastTime": 9952,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "a03906a3-537d-4e5a-a14b-74ca4a5b0f5f",
+    "txHash": "da91231d2864501f2582a01b8c7603e0b5641dce4a28f0db7c60a45a52978545",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192595080,
+    "broadcastTime": 10117,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "24a2987b-eb34-46ec-9b4c-c7b936568050",
+    "txHash": "0ff11cf90c467e064ed1758dc65573f84a69a418a11418364fb1e0a7d047b549",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594359,
+    "broadcastTime": 9328,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "b306a705-819c-4af9-824e-f102844b03f9",
+    "txHash": "33bd2e56536cb2ce63921fb3266e10d93a7b096d86eaf3f5e1a6356793d7928d",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594533,
+    "broadcastTime": 9481,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "24af4ca7-edcd-4d64-b904-e23ab248fada",
+    "txHash": "048ca0ccf3ad2ffa7bdfbe0bf1589b4a4594ae98cc43778c8e22ed743bc0f777",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594554,
+    "broadcastTime": 9499,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "e74e1b12-9230-4828-b373-66293e80ae13",
+    "txHash": "6bb9a45eb2b7dee902b1528ad39619b97e024d15393e60634150beb53f24d3ce",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594708,
+    "broadcastTime": 9671,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "7c74d6b8-ac9f-4c9e-b7f2-c19e9d944509",
+    "txHash": "31c1f9788a9fbff5b0f360e7059ee2cb73d7da7b71fcf2d7d81debe55accb4d8",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594321,
+    "broadcastTime": 9242,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "f9b02652-82ad-4717-8b1f-1aeb6a6bc83e",
+    "txHash": "0999928b4aba3e3647d0d378fa1c8555414d15c0c0139cc68638b2162c25f638",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594660,
+    "broadcastTime": 9597,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "8a982fc0-4671-4915-b4f7-bc4eb4c3cdcc",
+    "txHash": "449f4f3a1b528f11e448d408f31b2446d257f3eda09418c5e5c58bf589f04508",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594972,
+    "broadcastTime": 9897,
+    "status": "FAILED"
+  },
+  {
+    "ticketID": "0b464d56-129b-478d-ae57-8f72077f2a75",
+    "txHash": "163fd5ae8d6175e5a397a79ee23afc7bd72895393facc0e79cfe40b5c098f2a8",
+    "firstConfirmationTime": null,
+    "blockHeight": null,
+    "sixthConfirmationTime": null,
+    "timestamp": 1762192594971,
+    "broadcastTime": 9907,
+    "status": "FAILED"
+  }
+]
